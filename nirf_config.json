@@ -1,0 +1,26 @@
+# NIRF PDF Scraper Configuration
+{
+    "base_url": "https://www.nirfindia.org/Rankings/2024/EngineeringRanking.html",
+    "download_dir": "nirf_pdfs",
+    "data_dir": "nirf_data",
+    "analysis_dir": "nirf_analysis",
+    "request_timeout": 30,
+    "download_timeout": 60,
+    "delay_between_downloads": 1,
+    "max_retries": 3,
+    "alternative_urls": [
+        "https://www.nirfindia.org/Rankings/2023/EngineeringRanking.html",
+        "https://www.nirfindia.org/Rankings/2022/EngineeringRanking.html"
+    ],
+    "pdf_patterns": [
+        ".*\\.pdf$",
+        ".*ranking.*\\.pdf$",
+        ".*college.*\\.pdf$"
+    ],
+    "college_name_patterns": [
+        "Institute",
+        "College",
+        "University",
+        "School"
+    ]
+}
