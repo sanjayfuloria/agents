@@ -55,6 +55,26 @@ Details are [here](guides/09_ai_apis_and_ollama.ipynb).
 
 Be sure to monitor your API costs to ensure you are totally happy with any spend. For OpenAI, the dashboard is [here](https://platform.openai.com/usage).
 
+### PDF Downloader Tools
+
+This repository includes comprehensive PDF downloading capabilities:
+
+- **[Generic PDF Downloader](README_PDF_DOWNLOADER.md)** - Download PDFs from any website with configurable patterns
+- **[NIRF PDF Scraper](nirf_pdf_scraper.py)** - Specialized scraper for NIRF educational rankings
+
+Quick usage:
+```bash
+# Download PDFs from any website
+python pdf_downloader.py https://example.com/documents --output-dir my_pdfs/
+
+# Run NIRF-specific scraper
+python nirf_pdf_scraper.py
+
+# Test the tools
+python test_pdf_downloader.py
+python test_nirf_scraper.py
+```
+
 ### ABOVE ALL ELSE -
 
 Be sure to have fun with the course! You could not have picked a better time to be learning about Agentic AI. I hope you enjoy every single minute! And if you get stuck at any point - [contact me](https://www.linkedin.com/in/eddonner/).
