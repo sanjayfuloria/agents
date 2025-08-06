@@ -181,3 +181,13 @@ cython_debug/
 # Ignore Accounts database in capstone project
 6_mcp/accounts.db
 6_mcp/memory/*.db
+
+# PDF downloader outputs
+downloaded_pdfs/
+nirf_pdfs/
+nirf_data/
+nirf_analysis/
+test_output/
+*_pdfs/
+*_data/
+download_summary.json
