@@ -1,34 +1,80 @@
-# src/research_crew/config/tasks.yaml
+# src/financial_researcher/config/tasks.yaml
 research_task:
   description: >
     Conduct thorough research on company {company}. Focus on:
     1. Current company status and health
-    2. Historical company performance
-    3. Major challenges and opportunities
-    4. Recent news and events
-    5. Future outlook and potential developments
+    2. Recent business developments and strategy
+    3. Industry position and competitive landscape
+    4. Recent news and events (last 6 months)
+    5. Management team and corporate governance
+    6. Future outlook and growth prospects
 
+    Use web search tools to gather the most current information.
     Make sure to organize your findings in a structured format with clear sections.
   expected_output: >
     A comprehensive research document with well-organized sections covering
     all the requested aspects of {company}. Include specific facts, figures,
-    and examples where relevant.
+    recent developments, and sources where relevant.
   agent: researcher
 
-analysis_task:
+quantitative_analysis_task:
   description: >
-    Analyze the research findings and create a comprehensive report on {company}.
-    Your report should:
-    1. Begin with an executive summary
-    2. Include all key information from the research
-    3. Provide insightful analysis of trends and patterns
-    4. Offer a market outlook for company, noting that this should not be used for trading decisions
-    5. Be formatted in a professional, easy-to-read style with clear headings
+    Perform detailed quantitative financial analysis for {company}. Focus on:
+    1. Financial statements analysis (income statement, balance sheet, cash flow)
+    2. Key financial ratios (profitability, liquidity, leverage, efficiency)
+    3. Historical financial performance trends (3-5 years)
+    4. Peer comparison and industry benchmarking
+    5. Valuation metrics (P/E, P/B, EV/EBITDA, etc.)
+    6. Financial health assessment and risk factors
+
+    Use financial data tools to gather quantitative information and calculate key metrics.
   expected_output: >
-    A polished, professional report on {company} that presents the research
-    findings with added analysis and insights. The report should be well-structured
-    with an executive summary, main sections, and conclusion.
+    A detailed quantitative analysis report including financial ratios,
+    trend analysis, peer comparisons, and financial health assessment.
+    Present data in clear tables and highlight key insights.
+  agent: quantitative_analyst
+
+sentiment_analysis_task:
+  description: >
+    Analyze market sentiment and external factors affecting {company}. Focus on:
+    1. Recent news sentiment and market reaction analysis
+    2. Social media sentiment and retail investor perception  
+    3. Analyst sentiment and recent rating changes
+    4. Market positioning and investor confidence
+    5. Potential catalysts and risk events
+    6. ESG factors and sustainability concerns
+
+    Use sentiment analysis tools and web research to gauge market perception.
+  expected_output: >
+    A comprehensive sentiment analysis report covering news sentiment,
+    social media trends, analyst opinions, and potential market catalysts.
+    Include sentiment scores and key drivers of market perception.
+  agent: sentiment_analyst
+
+comprehensive_analysis_task:
+  description: >
+    Create a comprehensive investment analysis report for {company} by synthesizing
+    all research findings. Your report should include:
+    1. Executive Summary with key investment thesis
+    2. Company Overview and Business Model
+    3. Financial Performance Analysis (from quantitative analysis)
+    4. Market Position and Competitive Analysis (from research)
+    5. Sentiment and Market Perception Analysis
+    6. SWOT Analysis (Strengths, Weaknesses, Opportunities, Threats)
+    7. Investment Recommendation with price targets (if applicable)
+    8. Risk Assessment and Key Risk Factors
+    9. Conclusion and Key Takeaways
+
+    Note: This analysis is for informational purposes only and should not be
+    considered as financial advice for trading decisions.
+  expected_output: >
+    A professional, comprehensive investment research report of 3-5 pages
+    that synthesizes all findings into actionable insights. The report should be
+    well-structured with clear headings, executive summary, and conclusion.
+    Include specific data points, analysis, and reasoned recommendations.
   agent: analyst
   context:
     - research_task
-  output_file: output/report.md
+    - quantitative_analysis_task
+    - sentiment_analysis_task
+  output_file: output/comprehensive_financial_report.md

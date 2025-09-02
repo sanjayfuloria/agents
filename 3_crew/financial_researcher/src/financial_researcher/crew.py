@@ -1,18 +1,35 @@
 # src/financial_researcher/crew.py
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-from crewai_tools import SerperDevTool
+from crewai_tools import SerperDevTool, ScrapeWebsiteTool
+from .tools.financial_tools import FinancialDataTool, SECFilingTool, MarketSentimentTool
 
 @CrewBase
 class ResearchCrew():
-    """Research crew for comprehensive topic analysis and reporting"""
+    """Comprehensive financial research crew for in-depth company analysis"""
 
     @agent
     def researcher(self) -> Agent:
         return Agent(
             config=self.agents_config['researcher'],
             verbose=True,
-            tools=[SerperDevTool()]
+            tools=[SerperDevTool(), ScrapeWebsiteTool()]
+        )
+
+    @agent
+    def quantitative_analyst(self) -> Agent:
+        return Agent(
+            config=self.agents_config['quantitative_analyst'],
+            verbose=True,
+            tools=[FinancialDataTool(), SECFilingTool()]
+        )
+
+    @agent
+    def sentiment_analyst(self) -> Agent:
+        return Agent(
+            config=self.agents_config['sentiment_analyst'],
+            verbose=True,
+            tools=[SerperDevTool(), MarketSentimentTool()]
         )
 
     @agent
@@ -29,15 +46,27 @@ class ResearchCrew():
         )
 
     @task
-    def analysis_task(self) -> Task:
+    def quantitative_analysis_task(self) -> Task:
         return Task(
-            config=self.tasks_config['analysis_task'],
-            output_file='output/report.md'
+            config=self.tasks_config['quantitative_analysis_task']
+        )
+
+    @task
+    def sentiment_analysis_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['sentiment_analysis_task']
+        )
+
+    @task
+    def comprehensive_analysis_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['comprehensive_analysis_task'],
+            output_file='output/comprehensive_financial_report.md'
         )
 
     @crew
     def crew(self) -> Crew:
-        """Creates the research crew"""
+        """Creates the comprehensive financial research crew"""
         return Crew(
             agents=self.agents,
             tasks=self.tasks,
